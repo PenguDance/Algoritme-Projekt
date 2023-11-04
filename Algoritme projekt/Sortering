@@ -1,0 +1,57 @@
+from  p5 import *
+import random as ra
+import time as T
+def setup():
+   SArray = randomArray(10000)
+   print(SArray)
+   bubbleCopy = [number for number in SArray]
+   print("Bubblesort:")
+   bubblesort(bubbleCopy)
+   selectionCopy = [number for number in SArray]
+   print("Selectionsort:")
+   selectionsort(selectionCopy)
+
+def randomArray(n = ra.randint(4000,4000)):
+    SA = []
+    for i in range(n):
+        SA.append(ra.randint(0,10))
+    return(SA)
+
+def bubblesort(SA):
+    N = 0
+    startTid = T.time()
+    swapped = True
+    while swapped == True:
+        swapped  = False
+        for i in range(len(SA)-1-N):
+            
+            if SA[i] > SA[i+1]:
+                SA[i],SA[i+1] = SA[i+1],SA[i]
+                swapped = True
+        N += 1
+    print(T.time() - startTid)
+
+def selectionsort(SA):
+    startTime = T.time()
+    for i in range(len(SA)):
+        lNumber,lIndex = SA[i],i
+        for j in range(len(SA)-i):
+            if lNumber > SA[i+j]:
+                lNumber = SA[i+j]
+                lIndex = i+j
+        if lIndex != i:
+            SA[i],SA[lIndex] = SA[lIndex],SA[i]
+    print(T.time()-startTime)
+
+
+
+
+
+
+
+
+
+
+
+
+run()
